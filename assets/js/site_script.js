@@ -254,7 +254,7 @@ function createNewSiteStart() {
     $('#footer-house-ad').hide();
 
     //load up the html to create a new site
-    $( "#content" ).load( "site_sections/new_site_name.html", function() {
+    $( "#content" ).load( "pages/new_site_name.html", function() {
         //nothing to do after load
     });
 

@@ -82,7 +82,7 @@ var new_site = {
                 '<span class="text-primary-darkend font-weight-bold">Photo Club Name:</span><span class="text-primary"> ' + new_site.newSiteObject.newPhotoclubName + '</span><br>' +
                 '<span class="text-primary-darkend font-weight-bold">Website URL:</span><span class="text-primary"> myphotoclub.org?' + new_site.newSiteObject.newSiteNickname + '</span>';
 
-            $('#content').hide().load("site_sections/new_site_account.html", function() {
+            $('#content').hide().load("pages/new_site_account.html", function() {
 
                 $('#newSiteInformation').html(newSiteHTML);
 
@@ -106,7 +106,7 @@ var new_site = {
     reloadNewSiteName: function () {
         //load up the html to create a new site
 
-        $('#content').hide().load("site_sections/new_site_name.html", function() {
+        $('#content').hide().load("pages/new_site_name.html", function() {
 
             // populate the last info the user entered
             $('#newPhotoclubName').val(new_site.newSiteObject.newPhotoclubName);
@@ -242,7 +242,7 @@ var new_site = {
             '<span class="text-primary-darkend font-weight-bold">Username:</span><span class="text-primary"> ' + new_site.newCreatorObject.username + '</span><br>' +
             '<span class="text-primary-darkend font-weight-bold">Email:</span><span class="text-primary"> ' + new_site.newCreatorObject.email + '</span>';
 
-        $('#content').hide().load("site_sections/new_site_account_verification.html", function() {
+        $('#content').hide().load("pages/new_site_account_verification.html", function() {
 
 
             $('#newSiteInformation').html(newSiteHTML);
@@ -331,7 +331,7 @@ var new_site = {
             '<span class="text-primary-darkend font-weight-bold">Username:</span><span class="text-primary"> ' + new_site.newCreatorObject.username + '</span><br>' +
             '<span class="text-primary-darkend font-weight-bold">Email:</span><span class="text-primary"> ' + new_site.newCreatorObject.email + '</span>';
 
-        $('#content').hide().load("site_sections/new_site_account_verified.html", function() {
+        $('#content').hide().load("pages/new_site_account_verified.html", function() {
 
 
             $('#newSiteInformation').html(newSiteHTML);
