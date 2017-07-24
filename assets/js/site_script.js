@@ -313,6 +313,12 @@ function siteReturned(success, site) {
 
     //write the header slogan
     $('#headerSlogan').html(site.headerSlogan);
+
+
+    //for now, load the Member List page
+    memberListPage.render();
+
+
 }
 
 //**********************************************************************************************************************

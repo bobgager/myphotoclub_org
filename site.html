@@ -244,6 +244,8 @@
 <!--Custom App Scripts-->
 <script type="text/javascript">
     var currentDateTime = new Date().getTime();
+    <!--Globals-->
+    document.write('<script type="text/javascript" src="assets/js/globals.js?' + currentDateTime + '"> <\/script>');
     <!--aws connectivity script-->
     document.write('<script type="text/javascript" src="assets/js/awsConnector.js?' + currentDateTime + '"> <\/script>');
     <!--aws Cognito connectivity script-->
@@ -253,9 +255,15 @@
     <!--Generic user message modal-->
     document.write('<script type="text/javascript" src="assets/widgets/ModalMessage.js?' + currentDateTime + '"> <\/script>');
     <!--New Site Name script-->
-    document.write('<script type="text/javascript" src=' + currentDateTime + '"pages/new_site.js?"> <\/script>');
+    document.write('<script type="text/javascript" src="pages/new_site.js?' + currentDateTime + '"> <\/script>');
     <!--Site Utilities script-->
     document.write('<script type="text/javascript" src="assets/js/utilities.js?' + currentDateTime + '"> <\/script>');
+    <!--User Details script-->
+    console.log('TODO: move loading of userDetails.js into secure loader post sign in')
+    document.write('<script type="text/javascript" src="pages/userDetails.js?' + currentDateTime + '"> <\/script>');
+    <!--Member List script-->
+    console.log('TODO: move loading of memberList.js into secure loader post sign in')
+    document.write('<script type="text/javascript" src="pages/memberList.js?' + currentDateTime + '"> <\/script>');
 </script>
 
 

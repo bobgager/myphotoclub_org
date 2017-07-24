@@ -24,6 +24,36 @@ var awsConnector = {
     },
 
     //******************************************************************************************************************
+    fetchOldMemberList: function (callback) {
+
+        var params = {
+            TableName : 'sccc_members'
+        };
+
+        awsConnector.dynamodbEast.scan(params, function(err, data) {
+            //console.log('returned from scan with err= ' + err);
+            if (err){
+                callback(false, err);
+            }
+            else{
+                //console.log(data);
+
+                //sort the results by lastName
+                data.Items.sort(function(a, b){
+
+                    if (a.lastName < b.lastName) //sort  ascending
+                        return -1
+                    if (a.lastName > b.lastName)
+                        return 1
+                    return 0 //default return value (no sorting)
+                });
+
+                callback(true, data.Items);
+            }
+        });
+    },
+
+    //******************************************************************************************************************
     fetchSite: function(siteID, callback){
 
        var params = {
