@@ -1,0 +1,51 @@
+
+<div class="container text-grey-dark">
+
+    <hr class="hr-lg mt-0 mb-2 w-100 ml-0 hr-primary" />
+    <h4 class="text-left text-uppercase mt-0 ">
+        <span class="text-primary"><i class="fa fa-check" aria-hidden="true"></i> STEP 1:</span> YOUR WEBSITE INFORMATION
+    </h4>
+    <div id="newSiteInformation" class="mb-4"></div>
+
+    <hr class="hr-lg mt-0 mb-2 w-100 ml-0 hr-primary" />
+    <h4 class="text-left text-uppercase mt-0 ">
+        <span class="text-primary"><i class="fa fa-check" aria-hidden="true"></i> STEP 2:</span> YOUR USER ACCOUNT INFORMATION
+    </h4>
+    <div id="newAccountInformation" class="mb-4"></div>
+
+</div>
+
+<div class="container text-grey-dark">
+    <hr class="hr-lg mt-0 mb-2 w-100 ml-0 hr-primary" />
+    <h3 class="text-left text-uppercase mt-0 mb-3">
+        <span class="text-primary">STEP 3:</span> VERIFY YOUR ACCOUNT
+    </h3>
+    An email has been sent to you with a Verification Code.<br>
+    Please enter that code below to complete the sign up process.
+</div>
+
+
+<div class="container" >
+
+        <div class="col col-lg-8 pt-3">
+            <div class="card card-block text-center bg-shadow bg-gradient " >
+                <h5>
+                    Account Verification
+                </h5>
+
+                <div class="form-group">
+                    <input type="text" class="form-control" id="signup-account-verification-code" placeholder="Verification Code">
+                </div>
+
+                <button class="btn btn-primary " type="submit" onclick="new_site.verifyCreator();"><span id="creatorAccountVerifyBTNtext">Verify Account</span></button>
+                <h5>
+                    <br>
+                    Didn't get a code? <a href="#" onclick="new_site.resendVerificationCode()">Resend It</a>
+                </h5>
+            </div>
+
+        </div>
+
+</div>
+
+

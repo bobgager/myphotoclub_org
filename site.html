@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>My Photoclub.org | Photoclub Websites as stunning as your photos</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- @todo: fill with your company info or remove -->
+    <meta name="description" content="">
+    <meta name="author" content="cobaltfire.com">
+
+    <!-- Bootstrap 4.0.0-alpha.6 CSS via CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css">
+
+    <!-- Font Awesome 4.7.0 via CDN -->
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+    <!-- Plugins required on all pages NOTE: Additional non-required plugins are loaded ondemand as of AppStrap 2.5 -->
+
+
+    <!-- Theme style -->
+    <link href="assets/css/theme-style.css" rel="stylesheet">
+
+    <!--Your custom colour override-->
+    <link href="#" id="colour-scheme" rel="stylesheet">
+
+    <!-- Your custom override -->
+    <link href="assets/css/custom-style.css" rel="stylesheet">
+
+
+    <!-- Le fav and touch icons - @todo: fill with your icons or remove -->
+    <!--<link rel="shortcut icon" href="assets/assets/img/icons/favicon.png">-->
+    <link rel="apple-touch-icon" sizes="114x114" href="assets/assets/img/icons/114x114.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="assets/assets/img/icons/72x72.png">
+    <link rel="apple-touch-icon" href="assets/assets/img/icons/default.png">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700,300' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Rambla' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Calligraffitti' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+
+    <!--Plugin: Retina.js (high def image replacement) - @see: http://retinajs.com/-->
+    <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/retina.js/1.3.0/retina.min.js"></script>-->
+</head>
+
+<!-- ======== @Region: body ======== -->
+<body class="page header-compact-sticky page-index-photographer navbar-layout-default">
+
+<!-- @plugin: page loading indicator, delete to remove loader -->
+<div class="page-loader" data-toggle="page-loader"></div>
+
+<a id="#top" href="#content" class="sr-only">Skip to content</a>
+
+<!-- ======== @Region: #header ======== -->
+<div id="header">
+
+    <div data-toggle="sticky">
+
+
+        <!--Header & Branding region-->
+        <div class="header">
+            <!-- all direct children of the .header-inner element will be vertically aligned with each other you can override all the behaviours using the flexbox utilities (flexbox.htm) All elements with .header-brand & .header-block-flex wrappers will automatically be aligned inline & vertically using flexbox, this can be overridden using the flexbox utilities (flexbox.htm) Use .header-block to stack elements within on small screen & "float" on larger screens use .flex-first or/and .flex-last classes to make an element show first or last within .header-inner or .headr-block elements -->
+            <div class="header-inner container">
+                <!--branding/logo -->
+                <div class="header-brand flex-first">
+                    <a id="headerBrandTextLink" class="header-brand-text" href="index.html" title="Home">
+                        <h1 id="headerBrandText">
+                            <span>my</span>Photoclub<span>.org</span>
+                        </h1>
+                    </a>
+                    <div class="header-divider hidden-md-down"></div>
+                    <div id="headerSlogan" class="header-slogan hidden-md-down">Photo Club Websites as stunning as your photos</div>
+                </div>
+                <!-- other header content -->
+                <div class="header-block flex-last">
+
+
+                    <!-- mobile collapse menu button - data-toggle="collapse" = default BS menu - data-toggle="jpanel-menu" = jPanel Menu - data-toggle="overlay" = Overlay Menu -->
+                    <a href="#top" class="btn btn-link btn-icon header-btn float-right hidden-lg-up" data-toggle="jpanel-menu" data-target=".navbar-main" data-direction="right"> <i class="fa fa-bars"></i> </a>
+
+                </div>
+
+                <div class="navbar navbar-toggleable-md">
+                    <!--everything within this div is collapsed on mobile-->
+                    <div class="navbar-main collapse">
+                        <!--main navigation-->
+                        <ul class="nav navbar-nav float-lg-right dropdown-effect-fade">
+
+                            <li class="nav-item d-lg-flex dropdown">
+                                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">Members</a>
+                                <!-- Dropdown menu -->
+                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-nobullets">
+                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#login-modal" onclick="$('#login-username').attr('placeholder','Username');$('#signInDialogMessage').html('');$('#signInBTN').show();$('#changePasswordBTN').hide();"><i class="fa fa-user dropdown-icon" aria-hidden="true"></i> Sign In</a>
+                                    <a href="#" class="dropdown-item"><i class="fa fa-paint-brush dropdown-icon" aria-hidden="true"></i> Member Portfolios</a>
+                                    <a href="#" class="dropdown-item" data-toggle="modal" data-target="#signup-modal"><i class="fa fa-user dropdown-icon" aria-hidden="true"></i> New Member Application</a>
+                                    <a href="#" class="dropdown-item" onclick="verifyNewUser();"><i class="fa fa-user dropdown-icon" aria-hidden="true"></i> Verify New User</a>
+                                </div>
+                            </li>
+
+
+                        </ul>
+                    </div>
+                    <!--/.navbar-collapse -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ======== @Region: #content ======== -->
+<div id="content" class="pt-4 clearfix">
+
+   <div class="row justify-content-center mt-8 mb-8">
+        <div class="col-5 text-center">
+            <button class="btn btn-primary w-100" type="submit" data-toggle="modal" data-target="#login-modal" onclick="$('#login-username').attr('placeholder','Username');$('#signInDialogMessage').html('');$('#signInBTN').show();$('#changePasswordBTN').hide();">Sign In To Your Site</button>
+        </div>
+    </div>
+
+
+</div>
+<!-- #Content -->
+
+<!-- ======== @Region: #content-below ======== -->
+<div id="footer-house-ad">
+    <!-- Awesome features call to action -->
+    <div class="bg-primary text-white py-4">
+        <div class="container">
+            <div class="row text-center text-lg-left">
+                <div class="col-12 col-lg-7 py-2">
+                    <h3 class="text-uppercase font-weight-bold mt-0 mb-2">
+                        <span class="text-primary-darkend">Powered By: </span> <span class="text-primary-darkend text-shadow">MyPhotoClub.org</span>
+                    </h3>
+                    <h5 class="text-faded">
+                        <span class="text-primary-darkend font-weight-bold px-lg-1">Photoclub Websites as stunning as your photos</span>
+                    </h5>
+                </div>
+                <div class="col-12 col-lg-5 py-2 text-lg-right">
+                    <a href="site.html?createnewsite" class="btn btn-lg btn-primary btn-invert btn-rounded py-3 px-4">Create your site FOR FREE<i class="fa fa-arrow-right ml-2"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- ======== @Region: #footer ======== -->
+<footer id="footer" class="py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <ul class="list-inline footer-links mb-0 text-sm">
+                    <li class="list-inline-item"><a href="#">Terms</a></li>
+                    <li class="list-inline-item"><a href="#">Privacy</a></li>
+                    <li class="list-inline-item"><a href="#">Contact Us</a></li>
+                </ul>
+            </div>
+            <div class="col-md-6 flex-valign">
+                <div class="float-md-right ml-md-auto">
+                    <p class="mb-0 text-sm">Copyright 2017 &copy; <a href="http://cobaltfire.com">Cobalt Fire Software LLC</a></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+
+
+
+
+
+
+<!--Hidden elements - excluded from jPanel Menu on mobile-->
+<div class="hidden-elements jpanel-menu-exclude">
+
+    <!--@modal - login modal-->
+    <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">
+                        Sign In
+                    </h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form action="login.htm">
+                        <div class="form-group">
+                            <label class="sr-only" for="login-username">Username</label>
+                            <input type="email" id="login-username" class="form-control" placeholder="Username">
+                        </div>
+                        <div class="form-group">
+                            <label class="sr-only" for="login-password">Password</label>
+                            <input type="password" id="login-password" class="form-control password" placeholder="Password">
+                        </div>
+                        <div class="form-goup">
+                            <div class="row ">
+                                <div id="signInDialogMessage" class="col-9 text-primary" >
+
+                                </div>
+                                <div id="signInDialogButtonCol" class="col-3" style="text-align: right; ">
+                                    <span id="signInDialogButtonColMessage"></span>
+                                    <button id="changePasswordBTN" type="button" class="btn btn-primary" style="display: none" onclick="changePassword ($('#login-username').val(),$('#login-password').val())">Submit</button>
+                                    <button id="signInBTN" type="button" class="btn btn-primary" onclick="signInUser ($('#login-username').val(),$('#login-password').val())">Sign In</button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <!--<small>Not a member? <a href="#" class="signup">Sign up now!</a></small>
+                    <br />-->
+                    <small><a href="#" onclick="forgotPassword ()">Forgot Your password?</a></small>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+
+</div>
+
+
+<!--jQuery 1.12.4 via CDN -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+<!-- Tether 1.1.1 via CDN, needed for Bootstrap Tooltips & Popovers -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.1.1/js/tether.min.js"></script>
+
+<!-- Bootstrap 4.0.0-alpha.6 JS via CDN -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
+
+<!--Amazon Cognito SDK's-->
+<script src="assets/plugins/aws-cognito/aws-cognito-sdk.min.js"></script>
+<script src="assets/plugins/aws-cognito/amazon-cognito-identity.min.js"></script>
+
+<!--the Amazon AWS SDK (includes DynamoDB)-->
+<script src="https://sdk.amazonaws.com/js/aws-sdk-2.2.33.min.js"></script>
+
+<!--Custom scripts mainly used to trigger libraries/plugins -->
+<script src="assets/js/script.min.js"></script>
+
+<!--Custom App Scripts-->
+<script type="text/javascript">
+    var currentDateTime = new Date().getTime();
+    <!--aws connectivity script-->
+    document.write('<script type="text/javascript" src="assets/js/awsConnector.js?' + currentDateTime + '"> <\/script>');
+    <!--aws Cognito connectivity script-->
+    document.write('<script type="text/javascript" src="assets/plugins/aws-cognito/awsCognitoConnector.js?' + currentDateTime + '"> <\/script>');
+    <!--myPhotoclub main site script-->
+    document.write('<script type="text/javascript" src="assets/js/site_script.js?' + currentDateTime + '"> <\/script>');
+    <!--Generic user message modal-->
+    document.write('<script type="text/javascript" src="assets/widgets/ModalMessage.js?' + currentDateTime + '"> <\/script>');
+    <!--New Site Name script-->
+    document.write('<script type="text/javascript" src="site_sections/new_site.js?' + currentDateTime + '"> <\/script>');
+    <!--Site Utilities script-->
+    document.write('<script type="text/javascript" src="assets/js/utilities.js?' + currentDateTime + '"> <\/script>');
+</script>
+
+
+<script type="text/javascript">
+    this.initialize();
+</script>
+
+
+
+</body>
+</html>
