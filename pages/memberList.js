@@ -32,6 +32,9 @@ var memberListPage = {
 
         //console.log('got the member list back')
 
+        //save the Member List so we can use it elsewhere
+        globals.memberList = data;
+
         //build the members list UI
 
 
@@ -45,7 +48,7 @@ var memberListPage = {
                 user.status = 'Unkown Status';
             }
             if (!user.role){
-                user.role = 'Regular Member';
+                user.role = 'Standard Member';
             }
 
             user.profileImage = user.avatar.substring(15);
@@ -54,13 +57,14 @@ var memberListPage = {
                 '<div class="team-member">' +
                     '<div class="row">' +
                         '<div class="col-sm-2">' +
-                            '<a href="team-member.htm" title="View ' + user.firstName + '&#39;s profile">' +
+                            '<a href="#" title="View ' + user.firstName + '&#39;s profile" onclick="userDetailsPage.render(&#39;' + user.userID + '&#39;)">' +
                                 '<img src="assets/img/team/'+ user.profileImage +'" class="img-thumbnail" alt="'+ user.firstName +'" />' +
                             '</a>' +
                         '</div>' +
                         '<div class="col-sm-10">' +
+
                             '<h4 class="name">' +
-                                '<a href="team-member.htm" title="View ' + user.firstName + '&#39;s profile">'+ user.firstName + ' ' + user.lastName +'</a>' +
+                                '<a href="#" title="View ' + user.firstName + '&#39;s profile" onclick="userDetailsPage.render(&#39;' + user.userID + '&#39;)">'+ user.firstName + ' ' + user.lastName +'</a>' +
                             '</h4>' +
 
                             '<p class="role">' + user.role + '</p>' +
@@ -73,19 +77,12 @@ var memberListPage = {
 
                             '<a href="http://'+ user.portfolioURL +'" target="_blank"><i class="fa fa-globe"></i> '+ user.portfolioURL +'</a>' +
 
+                            '<p class="mt-2">' + user.status + '</p>' ;
 
+                            if (user.status === 'Invited'){
+                                userListHTML += '<button class="btn btn-sm btn-outline-primary" type="button" onclick=" adminUsersPage.invitedUserEmail = &#39;' + user.email + '&#39;; adminUsersPage.inviteGUID = &#39;' + user.userGUID + '&#39;; adminUsersPage.sendInvitationEmail(&#39;' + user.email + '&#39;)" ><i class="fa fa-send-o" aria-hidden="true"></i> Resend Invitation </button>';
 
-            //theHTML += '        <span class="col-xs-1 fa fa-globe  text-muted c-icon"></span>';
-            //theHTML += '        <span > <span class="col-xs-11 c-text text-muted"><a href="http://'+ theMembers[i].portfolioURL +'" target="_blank">'+ theMembers[i].portfolioURL +'</a></span><br/></span>';
-
-
-
-                        '<p class="mt-2">' + user.status + '</p>' ;
-
-                        if (user.status === 'Invited'){
-                            userListHTML += '<button class="btn btn-sm btn-outline-primary" type="button" onclick=" adminUsersPage.invitedUserEmail = &#39;' + user.email + '&#39;; adminUsersPage.inviteGUID = &#39;' + user.userGUID + '&#39;; adminUsersPage.sendInvitationEmail(&#39;' + user.email + '&#39;)" ><i class="fa fa-send-o" aria-hidden="true"></i> Resend Invitation </button>';
-
-                        }
+                            }
 
                     userListHTML +='' +
 
