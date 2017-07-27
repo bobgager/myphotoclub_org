@@ -1,0 +1,26 @@
+<div class="navbar-main  bg-primary navbar-inverse">
+    <!--sub navigation-->
+    <div class="bg-primary-darkend">
+        <div class="btn-toolbar " role="toolbar" aria-label="Toolbar with button groups">
+
+            <div class="btn-group " role="group" aria-label="First group">
+                <button type="button" class="btn btn-sm btn-outline-primary text-white" onclick="memberListPage.render()"><i class="fa fa-chevron-left"></i> Return To Member List</button>
+            </div>
+
+            <div class="mx-auto" >
+                <div class="btn-group " role="group" aria-label="Second group">
+                    <button id="editMemberBTN" type="button" class="btn btn-sm btn-outline-primary text-white" onclick="userDetailsPage.editMember()" ><i class="fa fa-edit"></i> Edit Member</button>
+                    <button id="cancelChangesBTN" type="button" class="btn btn-sm btn-outline-primary text-white" onclick="userDetailsPage.cancelChanges()"><i class="fa fa-ban"></i> Cancel Changes</button>
+                    <button id="saveChangesBTN" type="button" class="btn btn-sm btn-outline-primary text-white" onclick="userDetailsPage.saveChanges()"><i class="fa fa-save"></i> Save Changes</button>
+                </div>
+            </div>
+
+            <!--need this repetative div to get the button div above to center properly-->
+            <div class="btn-group " role="group" style="opacity: 0">
+                <button type="button" class="btn btn-sm btn-outline-primary text-white" ><i class="fa fa-chevron-left"></i> Return To Member List</button>
+            </div>
+
+
+        </div>
+    </div>
+</div>

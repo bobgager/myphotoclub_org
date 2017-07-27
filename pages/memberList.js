@@ -11,6 +11,11 @@ var memberListPage = {
 
         globals.currentPage = 'memberListPage';
 
+        //load the subNav bar
+        $('#subNavBar').hide().load("pages/empty_subNav.html", function() {
+            //nothing to do after it's loaded
+        }).fadeIn('1000');
+
 
         $('#content').hide().load("pages/memberList.html?version="+ globals.version, function() {
 
@@ -45,10 +50,10 @@ var memberListPage = {
         data.forEach(function (user, index) {
 
             if (!user.status){
-                user.status = 'Unkown Status';
+                user.status = 'Unknown';
             }
             if (!user.role){
-                user.role = 'Standard Member';
+                user.role = 'Standard';
             }
 
             user.profileImage = user.avatar.substring(15);

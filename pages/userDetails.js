@@ -11,6 +11,14 @@ var userDetailsPage = {
 
         globals.currentPage = 'userDetailsPage';
 
+        //load the subNav bar
+        $('#subNavBar').hide().load("pages/userDetails_subNav.html?version=" + globals.version, function() {
+            //set the visibility of the buttons
+            $('#editMemberBTN').show();
+            $('#saveChangesBTN').hide();
+            $('#cancelChangesBTN').hide();
+        }).fadeIn('1000');
+
 
         $('#content').hide().load("pages/userDetails.html?version="+ globals.version, function() {
 
@@ -56,19 +64,45 @@ var userDetailsPage = {
         $('#memberPortfolioLabelText').html(member.portfolioURL);
 
 
+        //fill in the member's Status
+        $('#memberStatusLabel').html('<span class="text-primary-darkend">Member Status: </span>' + member.status);
+
         //fill in the member's Role
-        $('#memberRoleLabel').html(member.role);
+        $('#memberRoleLabel').html('<span class="text-primary-darkend">Member Type: </span>' + member.role);
 
     },
 
     //******************************************************************************************************************
     userInfoComplete: function () {
 
+        //this function is called after the user logs in to make sure we have all the required information about them
+
         //for now, there are no additional user parameters required that we don't collect at account creation
         //so, just return true
         //if later we add additional required parameters, then return false
 
         return (true);
+    },
+
+    //******************************************************************************************************************
+    editMember: function () {
+        $('#editMemberBTN').hide();
+        $('#saveChangesBTN').show();
+        $('#cancelChangesBTN').show();
+    },
+
+    //******************************************************************************************************************
+    saveChanges: function () {
+        $('#editMemberBTN').show();
+        $('#saveChangesBTN').hide();
+        $('#cancelChangesBTN').hide();
+    },
+
+    //******************************************************************************************************************
+    cancelChanges: function () {
+        $('#editMemberBTN').show();
+        $('#saveChangesBTN').hide();
+        $('#cancelChangesBTN').hide();
     }
 
     //******************************************************************************************************************
