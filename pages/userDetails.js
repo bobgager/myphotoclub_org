@@ -4,6 +4,9 @@
 
 var userDetailsPage = {
 
+    memberIndex: null,
+    member: null,
+
     //******************************************************************************************************************
     render: function (userID) {
 
@@ -27,9 +30,12 @@ var userDetailsPage = {
             //find the index of the member in the memberList array
 
             //var index = Data.map(function(e) { return e.name; }).indexOf('Nick');
-            var index = globals.memberList.map(function(e) { return e.userID; }).indexOf(userID);
+            userDetailsPage.memberIndex = globals.memberList.map(function(e) { return e.userID; }).indexOf(userID);
 
-            userDetailsPage.fillMemberDetails(globals.memberList[index]);
+            //make a deep copy of the member and store it locally
+            userDetailsPage.member = jQuery.extend(true, {}, globals.memberList[userDetailsPage.memberIndex]);
+
+            userDetailsPage.fillMemberDetails(userDetailsPage.member);
 
         }).fadeIn('5000');
 
@@ -65,7 +71,7 @@ var userDetailsPage = {
 
 
         //fill in the member's Status
-        $('#memberStatusLabel').html('<span class="text-primary-darkend">Member Status: </span>' + member.status);
+        $('#memberStatusLabel').html(member.status);
 
         //fill in the member's Role
         $('#memberRoleLabel').html('<span class="text-primary-darkend">Member Type: </span>' + member.role);
@@ -89,6 +95,32 @@ var userDetailsPage = {
         $('#editMemberBTN').hide();
         $('#saveChangesBTN').show();
         $('#cancelChangesBTN').show();
+
+
+        $('#memberStatusLabel').replaceWith(function(){
+
+            var newElement = '' +
+                '<div id="memberStatusDropdown" class="dropdown">' +
+                    '<button id="memberStatusDropdownBTN" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                        globals.memberList[userDetailsPage.memberIndex].status +
+                    '</button>' +
+                    '<div class="dropdown-menu" aria-labelledby="memberStatusDropdownBTN">' +
+                        '<a class="dropdown-item" href="#" onclick="userDetailsPage.setMemberStatus(&#39;Invited&#39;)" >Invited</a>' +
+                        '<a class="dropdown-item" href="#" onclick="userDetailsPage.setMemberStatus(&#39;Active&#39;)" >Active</a>' +
+                        '<a class="dropdown-item" href="#" onclick="userDetailsPage.setMemberStatus(&#39;Inactive&#39;)" >Inactive</a>' +
+                    '</div>' +
+                '</div>';
+
+
+            return newElement ;
+        })
+
+
+    },
+
+    setMemberStatus: function (status) {
+        userDetailsPage.member.status = status;
+        $('#memberStatusDropdownBTN').html(status);
     },
 
     //******************************************************************************************************************
@@ -100,9 +132,7 @@ var userDetailsPage = {
 
     //******************************************************************************************************************
     cancelChanges: function () {
-        $('#editMemberBTN').show();
-        $('#saveChangesBTN').hide();
-        $('#cancelChangesBTN').hide();
+        userDetailsPage.render(userDetailsPage.member.userID);
     }
 
     //******************************************************************************************************************
