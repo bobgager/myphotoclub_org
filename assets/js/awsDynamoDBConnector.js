@@ -2,7 +2,7 @@
  * Created by bgager on 4/13/17.
  */
 
-var awsConnector = {
+var awsDynamoDBConnector = {
     //******************************************************************************************************************
 
     dynamodbEast: null,
@@ -17,7 +17,7 @@ var awsConnector = {
 
         AWS.config.region = 'us-east-1';
 
-        awsConnector.dynamodbEast = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
+        awsDynamoDBConnector.dynamodbEast = new AWS.DynamoDB.DocumentClient({apiVersion: '2012-08-10'});
 
         callback();
 
@@ -30,7 +30,7 @@ var awsConnector = {
             TableName : 'sccc_members'
         };
 
-        awsConnector.dynamodbEast.scan(params, function(err, data) {
+        awsDynamoDBConnector.dynamodbEast.scan(params, function(err, data) {
             //console.log('returned from scan with err= ' + err);
             if (err){
                 callback(false, err);
@@ -64,7 +64,7 @@ var awsConnector = {
             }
         };
 
-        awsConnector.dynamodbEast.query(params, function(err, data) {
+        awsDynamoDBConnector.dynamodbEast.query(params, function(err, data) {
 
             if (err){
               callback (false, err);
@@ -72,6 +72,43 @@ var awsConnector = {
             else {
                 // successful response
                 callback(true, data.Items[0]);
+            }
+        });
+
+    },
+
+    //******************************************************************************************************************
+    updateMember: function (member, callback) {
+
+        // 'state' is a reserved keyword in DynamoDB, so we need to migrate everyone to 'st'
+
+        if (!member.st){
+            member.st = member.state;
+        }
+
+        var params = {
+            TableName: 'sccc_members',
+            Key: { userID : member.userID, userEmail : member.userEmail },
+
+            UpdateExpression: "set memberStatus=:memberStatus, avatar=:avatar, city=:city, firstName=:firstName, lastName=:lastName, phone=:phone, portfolioURL=:portfolioURL, st=:st ",
+            ExpressionAttributeValues:{
+                ":memberStatus":member.memberStatus,
+                ":avatar":member.avatar,
+                ":city":member.city,
+                ":firstName":member.firstName,
+                ":lastName":member.lastName,
+                ":phone":member.phone,
+                ":portfolioURL":member.portfolioURL,
+                ":st":member.st
+            }
+        };
+
+        awsDynamoDBConnector.dynamodbEast.update(params, function(err, data) {
+            if (err){
+                callback(false,err)
+            }
+            else {
+                callback(true);
             }
         });
 

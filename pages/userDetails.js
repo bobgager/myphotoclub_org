@@ -2,6 +2,7 @@
  * Created by bgager on 5/25/17.
  */
 
+
 var userDetailsPage = {
 
     memberIndex: null,
@@ -71,7 +72,7 @@ var userDetailsPage = {
 
 
         //fill in the member's Status
-        $('#memberStatusLabel').html(member.status);
+        $('#memberStatusLabel').html(member.memberStatus);
 
         //fill in the member's Role
         $('#memberRoleLabel').html('<span class="text-primary-darkend">Member Type: </span>' + member.role);
@@ -102,7 +103,7 @@ var userDetailsPage = {
             var newElement = '' +
                 '<div id="memberStatusDropdown" class="dropdown">' +
                     '<button id="memberStatusDropdownBTN" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
-                        globals.memberList[userDetailsPage.memberIndex].status +
+                        globals.memberList[userDetailsPage.memberIndex].memberStatus +
                     '</button>' +
                     '<div class="dropdown-menu" aria-labelledby="memberStatusDropdownBTN">' +
                         '<a class="dropdown-item" href="#" onclick="userDetailsPage.setMemberStatus(&#39;Invited&#39;)" >Invited</a>' +
@@ -118,9 +119,9 @@ var userDetailsPage = {
 
     },
 
-    setMemberStatus: function (status) {
-        userDetailsPage.member.status = status;
-        $('#memberStatusDropdownBTN').html(status);
+    setMemberStatus: function (memberStatus) {
+        userDetailsPage.member.memberStatus = memberStatus;
+        $('#memberStatusDropdownBTN').html(memberStatus);
     },
 
     //******************************************************************************************************************
@@ -128,6 +129,24 @@ var userDetailsPage = {
         $('#editMemberBTN').show();
         $('#saveChangesBTN').hide();
         $('#cancelChangesBTN').hide();
+
+        //save the changes locally (deep copy)
+        globals.memberList[userDetailsPage.memberIndex] = jQuery.extend(true, {}, userDetailsPage.member);
+
+        //save changes to cloud and then re-render this page
+        awsDynamoDBConnector.updateMember(userDetailsPage.member, userDetailsPage.memberUpdated );
+
+    },
+
+    //******************************************************************************************************************
+    memberUpdated: function (success, data) {
+
+        if (!success){
+            //something went wrong with the update
+            console.log(data);
+        }
+
+        userDetailsPage.render(userDetailsPage.member.userID);
     },
 
     //******************************************************************************************************************

@@ -25,7 +25,7 @@ function initialize () {
         //update the branding text link with the full URL
         $('#headerBrandTextLink').attr('href',pageURL);
 
-        awsConnector.initializeAWS(createNewSiteStart);
+        awsDynamoDBConnector.initializeAWS(createNewSiteStart);
         return;
     }
 
@@ -51,7 +51,7 @@ function initialize () {
     $('#content').html(contentHTML);
 
     $('#footer-house-ad').show();
-    awsConnector.initializeAWS(awsInitialized)
+    awsDynamoDBConnector.initializeAWS(awsInitialized)
 
 }
 
@@ -265,7 +265,7 @@ function awsInitialized() {
 
     //fetch the site information for this siteCode
 
-    awsConnector.fetchSite(siteID, siteReturned);
+    awsDynamoDBConnector.fetchSite(siteID, siteReturned);
 
 
 

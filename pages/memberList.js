@@ -2,6 +2,7 @@
  * Created by bgager on 5/25/17.
  */
 
+
 var memberListPage = {
 
     //******************************************************************************************************************
@@ -20,7 +21,7 @@ var memberListPage = {
         $('#content').hide().load("pages/memberList.html?version="+ globals.version, function() {
 
             //utils.writeDebug('memberList Page loaded',false);
-            awsConnector.fetchOldMemberList(memberListPage.memberListReturned);
+            awsDynamoDBConnector.fetchOldMemberList(memberListPage.memberListReturned);
 
         }).fadeIn('1000');
 
@@ -49,8 +50,8 @@ var memberListPage = {
 
         data.forEach(function (user, index) {
 
-            if (!user.status){
-                user.status = 'Unknown';
+            if (!user.memberStatus){
+                user.memberStatus = 'Unknown';
             }
             if (!user.role){
                 user.role = 'Standard';
@@ -82,9 +83,9 @@ var memberListPage = {
 
                             '<a href="http://'+ user.portfolioURL +'" target="_blank"><i class="fa fa-globe"></i> '+ user.portfolioURL +'</a>' +
 
-                            '<p class="mt-2">' + user.status + '</p>' ;
+                            '<p class="mt-2">' + user.memberStatus + '</p>' ;
 
-                            if (user.status === 'Invited'){
+                            if (user.memberStatus === 'Invited'){
                                 userListHTML += '<button class="btn btn-sm btn-outline-primary" type="button" onclick=" adminUsersPage.invitedUserEmail = &#39;' + user.email + '&#39;; adminUsersPage.inviteGUID = &#39;' + user.userGUID + '&#39;; adminUsersPage.sendInvitationEmail(&#39;' + user.email + '&#39;)" ><i class="fa fa-send-o" aria-hidden="true"></i> Resend Invitation </button>';
 
                             }

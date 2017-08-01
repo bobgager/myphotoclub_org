@@ -49,7 +49,7 @@ var new_site = {
          }, 2000);
 
          //make sure the site Nickname (siteID) hasn't already been taken
-         awsConnector.fetchSite(new_site.newSiteObject.newSiteNickname, new_site.siteReturned);
+         awsDynamoDBConnector.fetchSite(new_site.newSiteObject.newSiteNickname, new_site.siteReturned);
     },
 
     //*****************************************************************************************************************
