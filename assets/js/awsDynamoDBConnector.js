@@ -90,16 +90,18 @@ var awsDynamoDBConnector = {
             TableName: 'sccc_members',
             Key: { userID : member.userID, userEmail : member.userEmail },
 
-            UpdateExpression: "set memberStatus=:memberStatus, avatar=:avatar, city=:city, firstName=:firstName, lastName=:lastName, phone=:phone, portfolioURL=:portfolioURL, st=:st ",
+            UpdateExpression: "set memberStatus=:memberStatus, avatar=:avatar, street=:street, city=:city, st=:st, zip=:zip, firstName=:firstName, lastName=:lastName, phone=:phone, portfolioURL=:portfolioURL ",
             ExpressionAttributeValues:{
                 ":memberStatus":member.memberStatus,
                 ":avatar":member.avatar,
+                ":street":member.street,
                 ":city":member.city,
+                ":st":member.st,
+                ":zip":member.zip,
                 ":firstName":member.firstName,
                 ":lastName":member.lastName,
                 ":phone":member.phone,
-                ":portfolioURL":member.portfolioURL,
-                ":st":member.st
+                ":portfolioURL":member.portfolioURL
             }
         };
 

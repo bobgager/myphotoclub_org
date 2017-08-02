@@ -75,7 +75,7 @@ var memberListPage = {
 
                             '<p class="role">' + user.role + '</p>' +
 
-                            '<p class="mb-0"><i class="fa fa-map-marker"></i> '+ user.street + ', ' + user.city + ', ' +  user.state+ ' ' +  user.zip + '</p>' +
+                            '<p class="mb-0"><i class="fa fa-map-marker"></i> '+ user.street + ', ' + user.city + ', ' +  user.st+ ' ' +  user.zip + '</p>' +
 
                             '<p class="mb-0"><i class="fa fa-phone"></i> '+ user.phone + '</p>' +
 

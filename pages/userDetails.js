@@ -56,7 +56,7 @@ var userDetailsPage = {
         //fill in member's address
         $('#memberStreetLabel').html(member.street);
         $('#memberCityLabel').html(member.city);
-        $('#memberStateLabel').html(member.state);
+        $('#memberStateLabel').html(member.st);
         $('#memberZipLabel').html(member.zip);
 
         //and their phone number
@@ -98,6 +98,70 @@ var userDetailsPage = {
         $('#cancelChangesBTN').show();
 
 
+
+        $('#memberAddressP').replaceWith(function(){
+
+            var newElement = '' +
+                '<div class="row no-gutters">' +
+                    '<div class="col-9">' +
+                        '<input id="memberStreetInput" type="text" class="form-control" placeholder="Street" value="' + userDetailsPage.member.street + '">' +
+                    '</div>' +
+                '</div>' +
+                '<div class="row no-gutters">' +
+                    '<div class="col-4">' +
+                        '<input id="memberCityInput" type="text" class="form-control" placeholder="City" value="' + userDetailsPage.member.city + '">' +
+                    '</div>' +
+                    '<div class="col-2">' +
+                        '<input id="memberStInput" type="text" class="form-control" placeholder="State" value="' + userDetailsPage.member.st + '">' +
+                    '</div>' +
+                    '<div class="col-3">' +
+                        '<input id="memberZipInput" type="text" class="form-control" placeholder="Zip" value="' + userDetailsPage.member.zip + '">' +
+                    '</div>' +
+                '</div>' ;
+
+
+            return newElement ;
+        });
+
+        $('#memberPhoneP').replaceWith(function(){
+
+            var newElement = '' +
+                '<div class="row no-gutters">' +
+                    '<div class="col-9">' +
+                        '<input id="memberPhoneInput" type="text" class="form-control" placeholder="Phone" value="' + userDetailsPage.member.phone + '">' +
+                    '</div>' +
+                '</div>' ;
+
+
+            return newElement ;
+        });
+
+        $('#memberEmailP').replaceWith(function(){
+
+            var newElement = '' +
+                '<div class="row no-gutters">' +
+                    '<div class="col-9">' +
+                        '<input id="memberEmailInput" type="text" class="form-control" placeholder="Email" value="' + userDetailsPage.member.userEmail + '">' +
+                    '</div>' +
+                '</div>' ;
+
+
+            return newElement ;
+        });
+
+        $('#memberPortfolioLabel').replaceWith(function(){
+
+            var newElement = '' +
+                '<div class="row no-gutters">' +
+                    '<div class="col-9">' +
+                        '<input id="memberPortfolioInput" type="text" class="form-control" placeholder="Portfolio URL" value="' + userDetailsPage.member.portfolioURL + '">' +
+                    '</div>' +
+                '</div>' ;
+
+
+            return newElement ;
+        });
+
         $('#memberStatusLabel').replaceWith(function(){
 
             var newElement = '' +
@@ -129,6 +193,17 @@ var userDetailsPage = {
         $('#editMemberBTN').show();
         $('#saveChangesBTN').hide();
         $('#cancelChangesBTN').hide();
+
+        userDetailsPage.member.street = $('#memberStreetInput').val();
+        userDetailsPage.member.city = $('#memberCityInput').val();
+        userDetailsPage.member.st = $('#memberStInput').val();
+        userDetailsPage.member.zip = $('#memberZipInput').val();
+
+        userDetailsPage.member.phone = $('#memberPhoneInput').val();
+
+        userDetailsPage.member.userEmail = $('#memberEmailInput').val();
+
+        userDetailsPage.member.portfolioURL = $('#memberPortfolioInput').val();
 
         //save the changes locally (deep copy)
         globals.memberList[userDetailsPage.memberIndex] = jQuery.extend(true, {}, userDetailsPage.member);
