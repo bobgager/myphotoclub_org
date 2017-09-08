@@ -13,7 +13,7 @@ var memberListPage = {
         globals.currentPage = 'memberListPage';
 
         //load the subNav bar
-        $('#subNavBar').hide().load("pages/empty_subNav.html", function() {
+        $('#subNavBar').hide().load("pages/memberList_subNav.html", function() {
             //nothing to do after it's loaded
         }).fadeIn('1000');
 
@@ -109,6 +109,13 @@ var memberListPage = {
 
 
 
+
+    },
+
+    //******************************************************************************************************************
+    addNewMember: function () {
+
+        userDetailsPage.render();
 
     }
 

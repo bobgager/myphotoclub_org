@@ -28,6 +28,28 @@ var userDetailsPage = {
 
             //utils.writeDebug('userDetails Page loaded',false);
 
+
+            //if no memberID was passed in, it means we're creating a New Member
+            if (!userID){
+
+                userDetailsPage.member = {  firstName: '',
+                                            lastName: '',
+                                            street: '',
+                                            city: '',
+                                            st: 'CA',
+                                            zip: '',
+                                            phone: '',
+                                            userEmail: '',
+                                            portfolioURL: '?',
+                                            role: 'Standard'
+                                                        };
+                userDetailsPage.memberIndex = -1;
+                $('#memberRoleLabel').html('<span class="text-primary-darkend">Member Type: </span>' + userDetailsPage.member.role);
+                userDetailsPage.editMember();
+                return;
+            }
+
+
             //find the index of the member in the memberList array
 
             //var index = Data.map(function(e) { return e.name; }).indexOf('Nick');
@@ -97,6 +119,30 @@ var userDetailsPage = {
         $('#saveChangesBTN').show();
         $('#cancelChangesBTN').show();
 
+        if (userDetailsPage.memberIndex === -1){
+            //creating a New Member
+            $('#cancelChangesBTN').hide();
+        }
+
+
+
+        $('#lastNameHeader').remove();
+
+        $('#firstNameHeader').replaceWith(function(){
+
+            var newElement = '' +
+                '<div class="row no-gutters">' +
+                    '<div class="col-3">' +
+                        '<input id="memberFirstNameInput" type="text" class="form-control" placeholder="First Name" value="' + userDetailsPage.member.firstName + '">' +
+                    '</div>' +
+                    '<div class="col-3">' +
+                        '<input id="memberLastNameInput" type="text" class="form-control" placeholder="Last Name" value="' + userDetailsPage.member.lastName + '">' +
+                    '</div>' +
+                '</div>' ;
+
+
+            return newElement ;
+        });
 
 
         $('#memberAddressP').replaceWith(function(){
@@ -164,6 +210,10 @@ var userDetailsPage = {
 
         $('#memberStatusLabel').replaceWith(function(){
 
+            if (userDetailsPage.memberIndex === -1){
+                return '<div>Not Invited</div>' ;
+            }
+
             var newElement = '' +
                 '<div id="memberStatusDropdown" class="dropdown">' +
                     '<button id="memberStatusDropdownBTN" class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
@@ -194,6 +244,9 @@ var userDetailsPage = {
         $('#saveChangesBTN').hide();
         $('#cancelChangesBTN').hide();
 
+        userDetailsPage.member.firstName = $('#memberFirstNameInput').val();
+        userDetailsPage.member.lastName = $('#memberLastNameInput').val();
+
         userDetailsPage.member.street = $('#memberStreetInput').val();
         userDetailsPage.member.city = $('#memberCityInput').val();
         userDetailsPage.member.st = $('#memberStInput').val();
@@ -204,6 +257,20 @@ var userDetailsPage = {
         userDetailsPage.member.userEmail = $('#memberEmailInput').val();
 
         userDetailsPage.member.portfolioURL = $('#memberPortfolioInput').val();
+
+        if (userDetailsPage.memberIndex === -1){
+            //we're adding a new member instead of saving changes to an old member
+
+            userDetailsPage.member.userID = utils.guid();
+
+            userDetailsPage.member.avatar = '../images/team/generic-man-profile.jpg';
+
+            userDetailsPage.member.memberStatus = 'Active';
+
+            awsDynamoDBConnector.updateMember(userDetailsPage.member, memberListPage.render );
+
+            return;
+        }
 
         //save the changes locally (deep copy)
         globals.memberList[userDetailsPage.memberIndex] = jQuery.extend(true, {}, userDetailsPage.member);
